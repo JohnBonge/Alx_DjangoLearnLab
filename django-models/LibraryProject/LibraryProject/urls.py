@@ -28,4 +28,5 @@ urlpatterns = [
              TemplateView.as_view(template_name='accounts/profile.html'),
              name='profile'),
     path("signup/", SignUpView.as_view(), name="templates/registration/signup"),
+    path('', include('relationship_app.urls')), # Include app URLS
 ]
