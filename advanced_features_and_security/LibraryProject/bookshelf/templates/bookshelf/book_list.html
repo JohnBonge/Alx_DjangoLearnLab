@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Book List</h1>
+
+  <form method="get" action="{% url 'book_list' %}">
+    {% csrf_token %}
+    <input type="text" name="query" placeholder="Search books..." value="{{ request.GET.query|default:'' }}">
+    <button type="submit">Search</button>
+  </form>
+
+  {% if books %}
+    <ul>
+      {% for book in books %}
+        <li>{{ book.title|escape }} by {{ book.author|escape }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No books found.</p>
+  {% endif %}
+{% endblock %}
