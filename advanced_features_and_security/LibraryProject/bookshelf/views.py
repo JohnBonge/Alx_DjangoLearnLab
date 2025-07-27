@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect
 from .models import Book
 from django.http import HttpResponse
 from django.db.models import Q
@@ -39,3 +40,13 @@ def secure_view(request):
     response = HttpResponse("Secure page")
     response['Content-Security-Policy'] = "default-src 'self';"
     return response
+
+def example_form_view(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            # Process form data here (e.g., save, log, email, etc.)
+            return redirect('example_form')  # redirect back to the same form or a success page
+    else:
+        form = ExampleForm()
+    return render(request, 'bookshelf/form_example.html', {'form': form})
