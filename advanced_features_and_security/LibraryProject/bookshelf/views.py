@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Book
 from django.http import HttpResponse
 from django.db.models import Q
+from .forms import ExampleForm
 
 form = BookSearchForm(request.GET)
 if form.is_valid():
