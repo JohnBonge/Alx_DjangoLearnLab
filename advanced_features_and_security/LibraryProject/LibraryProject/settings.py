@@ -44,6 +44,8 @@ X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # CSP headers (optional if using django-csp middleware below)
 
 # Define your CSP policy
