@@ -27,15 +27,20 @@ SECRET_KEY = 'django-insecure-6s5f2$19wv541q4)y!==rp@4f_qy78xg415=ogpk46v2so#l9d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# Enforce HTTPS
+# Force all HTTP connections to use HTTPS
 SECURE_SSL_REDIRECT = True  # Redirect HTTP to HTTPS
 
-# Browser-based security protections
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+# Tell browsers to use HTTPS for future requests
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True  # Allow browser preload lists
+
+# Add security-related HTTP headers
+SECURE_BROWSER_XSS_FILTER = True # Enable basic XSS protection
+SECURE_CONTENT_TYPE_NOSNIFF = True # Disable MIME sniffing
 X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
 
-# Cookie security
+# Ensure cookies are only transmitted over HTTPS
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
